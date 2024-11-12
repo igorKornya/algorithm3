@@ -45,7 +45,7 @@ public:
     void recursionPreOrder(TNode* curr, vector<int>& res) {
         if (curr != nullptr) {
             res.push_back(curr->data);
-            recursionPreOrder(curr->left, res); // Исправлено: используется recursionPreOrder
+            recursionPreOrder(curr->left, res);
             recursionPreOrder(curr->right, res);
         }
     }
