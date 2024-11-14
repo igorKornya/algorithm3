@@ -87,6 +87,7 @@ public:
 };
 
 int main() {
+/*
     BinaryThree tree(6);
     tree.addLeft(tree.root, 2);
     tree.addRight(tree.root, 7);
@@ -99,7 +100,7 @@ int main() {
 
     cout << "In-order: "; tree.printInOrder();
     cout << "Pre-order: "; tree.printPreOrder();
-    cout << "Post-order: "; tree.printPostOrder();
+    cout << "Post-order: "; tree.printPostOrder();*/
 
     return 0;
 }
