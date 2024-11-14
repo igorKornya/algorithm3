@@ -203,9 +203,9 @@ public:
 };
 
 int main() {
-        //AVLTree tree;
+    //AVLTree tree(20);
 
-    //vector<int> elements = { 20, 10, 30, 5, 15, 25, 35 };
+    //vector<int> elements = { 10, 30, 5, 15, 25, 35 };
     //for (int el : elements) {
     //    tree.root = tree.insert(tree.root, el);
     //}
