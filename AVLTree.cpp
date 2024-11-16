@@ -60,7 +60,7 @@ public:
 
         if (balanceF(tree) == 2) {
             if (balanceF(tree->right) < 0) {
-                tree->right = leftTurn(tree->right);
+                tree->right = RightTurn(tree->right);
             }
             return leftTurn(tree);
         }
