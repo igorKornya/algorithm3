@@ -113,9 +113,8 @@ int parcer()
 void menu()
 {
     cout << "\n1. Считать с файла в бинарное дерево, вывод обходов бинарного дерева" << endl;
-    cout << "2. Обход дерева и создание АВЛ-дерева" << endl;
-    cout << "3. Вывод всех 4 способов" << endl;
-    cout << "4. Выход" << endl;
+    cout << "2. Обход дерева и создание АВЛ-дерева" << endl;;
+    cout << "3. Выход" << endl;
     cout << "Выберите: " << endl;
 }
 
@@ -135,11 +134,11 @@ void AVLtreeFUNC()
     tree.recursionPostOrder(tree.root, postOrder);
 
     cout << "In-order: ";
-    for (int val : inOrder) cout << val << " ";
+    for (int val : inOrder) cout << val;
     cout << "\nPre-order: ";
-    for (int val : preOrder) cout << val << " ";
+    for (int val : preOrder) cout << val;
     cout << "\nPost-order: ";
-    for (int val : postOrder) cout << val << " ";
+    for (int val : postOrder) cout << val;
     cout << "\nBreadth-first traversal: ";
     tree.bft(tree.root);
 }
