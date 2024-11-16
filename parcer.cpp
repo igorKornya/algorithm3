@@ -1,13 +1,19 @@
-﻿#include "stack.cpp"
+#include "stack.cpp"
 #include "BinaryTree.cpp"
+#include "AVLTree.cpp"
 #include <string>
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <locale>
 
 using namespace std;
 
-int main() {
+
+vector<int> AVLvec;
+
+int parcer()
+{
     Stack<char> stack;
     string path = "bb.txt";
     ifstream read(path);
@@ -45,6 +51,7 @@ int main() {
     s.erase(0, s.find('('));
 
     BinaryThree tree(root);
+    vector<int> vec;
     TNode* curr_parent = tree.get_root();
     int curr_node_val = 0;
     bool right_child_flag = false;
@@ -96,13 +103,72 @@ int main() {
             return 2;
         }
     }
-    vector<int> vec;
+    cout << "\nБинарное дерево: ";
     tree.recursionInOrder(tree.get_root(), vec);
+    AVLvec.assign(vec.begin(), vec.end());
     tree.printInOrder();
-    tree.recursionPostOrder(tree.get_root(), vec);
-    tree.printPostOrder();
-    tree.recursionPreOrder(tree.get_root(), vec);
-    tree.printPreOrder();
+
+}
+
+void menu()
+{
+    cout << "\n1. Считать с файла в бинарное дерево, вывод обходов бинарного дерева" << endl;
+    cout << "2. Обход дерева и создание АВЛ-дерева" << endl;
+    cout << "3. Вывод всех 4 способов" << endl;
+    cout << "4. Выход" << endl;
+    cout << "Выберите: " << endl;
+}
+
+void AVLtreeFUNC()
+{
+    AVLTree tree(AVLvec[0]);
+
+    for (int el : AVLvec) {
+        tree.root = tree.insert(tree.root, el);
+    }
+    cout << "AVL-Tree: ";
+    tree.printTree();
+
+    vector<int> inOrder, preOrder, postOrder;
+    tree.recursionInOrder(tree.root, inOrder);
+    tree.recursionPreOrder(tree.root, preOrder);
+    tree.recursionPostOrder(tree.root, postOrder);
+
+    cout << "In-order: ";
+    for (int val : inOrder) cout << val << " ";
+    cout << "\nPre-order: ";
+    for (int val : preOrder) cout << val << " ";
+    cout << "\nPost-order: ";
+    for (int val : postOrder) cout << val << " ";
+    cout << "\nBreadth-first traversal: ";
+    tree.bft(tree.root);
+}
+
+int main() {
+    setlocale(LC_ALL, "ru");
+
+    while (true) {
+        menu();
+        int choice;
+        cin >> choice;
+        string res;
+
+        switch (choice) {
+        case 1:
+            parcer();
+            break;
+        case 2:
+            AVLtreeFUNC();
+            break;
+        case 3:
+            cout << "Выход из программы." << endl;
+            return 0;
+        default:
+            cout << "Неверный выбор. Повторите ввод." << endl;
+            break;
+        }
+    }
 
     return 0;
 }
+
