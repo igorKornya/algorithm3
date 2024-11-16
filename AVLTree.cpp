@@ -32,35 +32,47 @@ public:
     }
 
     AVLTNode* leftTurn(AVLTNode* tree) {
+        if (tree == nullptr || tree->right == nullptr) {
+            return tree;
+        }
+
         AVLTNode* curr = tree->right;
         tree->right = curr->left;
         curr->left = tree;
-        fix(tree);
-        fix(curr);
+
+        fix(tree); 
+        fix(curr); 
         return curr;
     }
 
+
     AVLTNode* rightTurn(AVLTNode* tree) {
+        if (tree == nullptr || tree->left == nullptr) {
+            return tree;
+        }
+
         AVLTNode* curr = tree->left;
         tree->left = curr->right;
         curr->right = tree;
-        fix(curr);
+
         fix(tree);
+        fix(curr);
         return curr;
     }
 
+
     AVLTNode* balance(AVLTNode* tree) {
         fix(tree);
-        if (balanceF(tree) == -2) {
+        if (balanceF(tree) < -1) {
             if (balanceF(tree->left) > 0) {
                 tree->left = leftTurn(tree->left);
             }
             return rightTurn(tree);
         }
 
-        if (balanceF(tree) == 2) {
+        if (balanceF(tree) > 1) {
             if (balanceF(tree->right) < 0) {
-                tree->right = RightTurn(tree->right);
+                tree->right = rightTurn(tree->right);
             }
             return leftTurn(tree);
         }
@@ -128,7 +140,7 @@ public:
     void printInOrder(AVLTNode* tree) {
         if (tree != nullptr) {
             printInOrder(tree->left);
-            cout << tree->data << " ";
+            cout << tree->data;
             printInOrder(tree->right);
         }
     }
@@ -187,7 +199,7 @@ public:
         {
             AVLTNode* temp = qu.front();
             qu.pop();
-            cout << temp->data << " ";
+            cout << temp->data;
 
             if (temp->left != nullptr)
             {
@@ -201,34 +213,3 @@ public:
         cout << endl;
     }
 };
-
-int main() {
-    //AVLTree tree(20);
-
-    //vector<int> elements = { 10, 30, 5, 15, 25, 35 };
-    //for (int el : elements) {
-    //    tree.root = tree.insert(tree.root, el);
-    //}
-    //cout << "AVL-Tree: ";
-    //tree.printTree();
-
-    //tree.root = tree.del(tree.root, 10);
-    //cout << "after deleting: ";
-    //tree.printTree();
-
-    //vector<int> inOrder, preOrder, postOrder;
-    //tree.recursionInOrder(tree.root, inOrder);
-    //tree.recursionPreOrder(tree.root, preOrder);
-    //tree.recursionPostOrder(tree.root, postOrder);
-
-    //cout << "In-order: ";
-    //for (int val : inOrder) cout << val << " ";
-    //cout << "\nPre-order: ";
-    //for (int val : preOrder) cout << val << " ";
-    //cout << "\nPost-order: ";
-    //for (int val : postOrder) cout << val << " ";
-    //cout << "\nBreadth-first traversal: ";
-    //tree.bft(tree.root);
-
-    //return 0;
-}
